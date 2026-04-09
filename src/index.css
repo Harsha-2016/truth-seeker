@@ -81,3 +81,42 @@
     text-shadow: 0 0 15px hsl(var(--gold) / 0.4);
   }
 }
+
+/* Full-page scanner effect */
+@keyframes scan-sweep {
+  0% { top: -4px; }
+  100% { top: 100%; }
+}
+
+.page-scanner-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.page-scanner-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, hsl(var(--glow-blue)), hsl(var(--glow-teal)), hsl(var(--glow-blue)), transparent);
+  box-shadow: 0 0 30px 10px hsl(var(--glow-blue) / 0.6), 0 0 80px 20px hsl(var(--glow-blue) / 0.3);
+  animation: scan-sweep 2s ease-in-out infinite;
+}
+
+.page-scanner-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(hsl(var(--glow-blue) / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--glow-blue) / 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes grid-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}

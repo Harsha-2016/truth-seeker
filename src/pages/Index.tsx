@@ -42,6 +42,22 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-background">
+      {/* Full-page scanner overlay */}
+      <AnimatePresence>
+        {state === 'scanning' && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="page-scanner-overlay"
+          >
+            <div className="page-scanner-grid" />
+            <div className="page-scanner-line" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* 3D Scene Background */}
       <div className="absolute inset-0 z-0">
         <DetectiveScene state={state} truthScore={truthScore} progress={progress} />
